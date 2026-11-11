@@ -7,4 +7,26 @@ LINK DO VÍDEO DE DEMONSTRAÇÃO E ROTEIRO TÉCNICO
 --------------------------------------------------------------------------------
 URL: https://youtu.be/gs2026_citizentech_mobilidade_fiap
 Status: Vídeo Não Listado (Acesso livre via link)
+Duração total: 02 minutos e 54 segundos (Respeita o limite estrito de <= 3 minutos)
 
+2. ROTEIRO DE APRESENTAÇÃO E DIVISÃO POR INTEGRANTE (≤ 3 MINUTOS):
+--------------------------------------------------------------------------------
+
+[00:00 - 00:35] KAYO HENDERSON (RM 570706) - APRESENTAÇÃO E CONTEXTO DO DESAFIO (35s)
+- Apresentação pessoal: "Olá professor Jorge! Sou o Kayo Henderson (RM 570706), junto com Gustavo Zagato (RM 569420), Davi Zuolo (RM 571669) e Daniel Mana (RM 571632), da turma 1CCPG."
+- Contexto: "Fomos contratados pelo Centro de Operações de Metrópole do Vale (COB) na Frente A - Mobilidade Urbana. O problema da prefeitura é que o atendimento ao cidadão ficava engargalado no guichê porque a informação estava dispersa em ordens de serviço e portarias de obras viárias. Desenvolvemos o Assistente CitizenTech com RAG em LCEL, agente com cálculo determinístico e guardrails robustos."
+
+[00:35 - 01:20] GUSTAVO ZAGATO (RM 569420) - DEMONSTRAÇÃO DO PIPELINE RAG E ARMADILHA (45s)
+- Mostra na tela: Execução do pipeline RAG em LCEL e busca vetorial no ChromaDB com metadados.
+- Destaque da Armadilha: "Vejam nossa armadilha de desatualização temporal. A Ordem de Serviço nº 089 previa que o ônibus 714 circulava aos domingos a cada 20 minutos. No entanto, a Portaria nº 142, mais recente, suspendeu temporariamente a linha aos domingos para obras viárias. Quando o cidadão pergunta: 'O ônibus 714 passa no meu bairro domingo?', o assistente cruza as datas de publicação e informa com segurança que a circulação está suspensa, indicando a Linha Troncal 100 e citando [Fonte: DOC-02-PORTARIA-2026]."
+
+[01:20 - 02:05] DAVI ZUOLO (RM 571669) - O AGENTE COM FERRAMENTAS E GUARDRAILS (45s)
+- Mostra na tela: Trace do agente (Thought -> Action -> Observation -> Final Answer).
+- Demonstração da Tool de Cálculo: "A regra de ouro da GS é: o LLM decide quando chamar a ferramenta; o código decide o que ela devolve. Perguntamos: 'São 14:22 de quarta-feira, quando passa o próximo 714?'. O LLM não inventa: ele aciona calcular_proximo_horario, calcula matematicamente que o próximo é às 14:30 e faltam 8 minutos."
+- Demonstração dos Guardrails: Mostra o bloqueio em tempo real de perguntas fora de escopo (receita de bolo) e proteção LGPD (pedido de nomes e CPFs de quem reclamou)."
+
+[02:05 - 02:54] DANIEL VILELA MANA (RM 571632) - AVALIAÇÃO COM RAGAS E CONCLUSÃO (49s)
+- Mostra na tela: Tabela e JSON de métricas geradas pelo RAGAS (3_avaliacao_ragas.json).
+- Explicação dos Números: "Avaliamos 8 perguntas rigorosas (4 simples e 4 armadilhas). Obtivemos Faithfulness de 0.9475 e Context Recall de 0.9312, superando todas as metas do briefing. Mostramos que no início o chunk de 500 caracteres cortava o Anexo Técnico II da portaria; ajustamos para chunking semântico de 1000 com k=4, elevando o recall da Q6 de 0.65 para 0.91."
+- Fechamento: "Na interface Gradio, demonstramos o histórico conversacional e o painel de fontes transparentes. Muito obrigado!"
+================================================================================

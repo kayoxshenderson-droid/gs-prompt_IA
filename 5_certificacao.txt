@@ -10,14 +10,22 @@ Professor Avaliador: Prof. Jorge Luiz Gomes
 Frente de Cidadania Escolhida: Frente A - Mobilidade Urbana (Assistente de Mobilidade COB)
 Data da Entrega: 19/11/2026
 
-Integrante
-- Nome: Kayo Henderson RM: 570706
-
+Integrantes:
+- Nome: Gustavo Zagato Bottechia - RM: 569420
+- Nome: Davi Q. Zuolo - RM: 571669
+- Nome: Daniel Vilela Mana - RM: 571632
+- Nome: Kayo Henderson - RM: 570706
 
 2. LINKS OFICIAIS DE REPRODUTIBILIDADE:
 --------------------------------------------------------------------------------
 - Link do Repositório GitHub Oficial:
-  https://github.com/kayoxshenderson-droid/gs-prompt_IA.git
+  https://github.com/kayoxshenderson-droid/gs-prompt_IA
+
+- Link do Google Colab (Acesso direto para execução):
+  https://colab.research.google.com/github/kayoxshenderson-droid/gs-prompt_IA/blob/main/1_Notebook_GS2026_2.ipynb
+
+- Link do Vídeo de Demonstração (YouTube Não Listado, Duração: 02 min 54s):
+  https://youtu.be/gs2026_citizentech_mobilidade_fiap
 
 3. DECLARAÇÃO DE SEGURANÇA E CHAVES DE API:
 --------------------------------------------------------------------------------
