@@ -209,3 +209,4 @@ O que é necessário para escala em produção municipal:
    - Valor: sua chave de acesso Ollama Cloud
 3. Clique em **Runtime** (Ambiente de Execução) → **Run all** (Executar tudo).
 4. Todas as células executarão sequencialmente sem interrupções, gerando os outputs, traces, guardrails e o arquivo `3_avaliacao_ragas.json`.
+
