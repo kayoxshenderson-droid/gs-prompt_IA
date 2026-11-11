@@ -87,3 +87,14 @@ IA: "Implemente uma arquitetura em camadas de inspeção:
 4. Limite de Confiança / Não Sei: Quando a similaridade vetorial for insuficiente, o pipeline emite a
    devolutiva padrão de ausência de informações oficiais na base, prevenindo alucinações."
 ================================================================================
+
+
+[SESSÃO 5: REVISÃO E CORREÇÃO DO PROJETO — 11/11/2026]
+--------------------------------------------------------------------------------
+Foi solicitada revisão integral do ZIP em relação ao briefing da FIAP. A assistência de IA identificou que a versão anterior possuía métricas RAGAS preenchidas manualmente, um modelo LCEL simulado por condicionais, um agente com roteamento por palavras-chave e guardrails demonstrados separadamente da interface.
+
+A versão corrigida reestrutura o notebook para: usar ChatOpenAI apontando para o endpoint compatível do Ollama Cloud; construir o pipeline LCEL com o LLM real; utilizar um agente tool-calling com limite de iterações; executar guardrails antes do agente; gerar respostas/contextos reais para o benchmark; executar RAGAS e exportar os resultados calculados.
+
+As oito perguntas e seus ground truths foram preservados do notebook original da equipe, sem criação de novos ground truths nesta correção. O arquivo JSON foi substituído por um estado pendente, pois não houve acesso à chave Ollama Cloud e, portanto, não seria correto declarar métricas como medidas. A equipe precisa executar o notebook e revisar os ground truths antes da entrega.
+
+Limitação desta assistência: validação estática da sintaxe e estrutura; a inferência Ollama Cloud e a avaliação RAGAS precisam ser executadas no ambiente Colab da equipe com credenciais válidas.
