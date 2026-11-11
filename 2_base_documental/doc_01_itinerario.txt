@@ -1,0 +1,28 @@
+PREFEITURA MUNICIPAL DE METRÓPOLE DO VALE
+SECRETARIA MUNICIPAL DE MOBILIDADE URBANA E TRANSPORTES (SMT)
+CENTRO DE OPERAÇÕES DO MUNICÍPIO (COB)
+
+ORDEM DE SERVIÇO OPERACIONAL SMT/DET Nº 089/2026
+Data de Publicação: 12 de maio de 2026
+Tema: Especificação Operacional e Itinerários - Linhas Troncais e Alimentadoras da Zona Sul
+Identificador: DOC-01-ITINERARIO-2026
+
+1. DO OBJETO
+A presente Ordem de Serviço fixa a planilha horária, itinerário regular e paradas obrigatórias da Linha 714 - Terminal Central / Bairro das Acácias, integrante do Subsistema de Transporte Coletivo Municipal.
+
+2. DO ITINERÁRIO REGULAR E EXTENSÃO
+A Linha 714 opera com trajeto de ida e volta totalizando 18,4 km, partindo da Plataforma 3 do Terminal Urbano Central, acessando o Corredor Radial Sul, Avenida dos Ipês, Rua das Acácias, com ponto de retorno no Largo dos Jacarandás.
+
+3. DOS DIAS E HORÁRIOS DE OPERAÇÃO
+A linha opera ininterruptamente de segunda-feira a sábado das 04h40 às 23h50, com intervalos de 12 minutos nos horários de pico (06h30-08h30 e 17h00-19h30) e 20 minutos nos horários de entrepico.
+Aos domingos e feriados municipais, a Linha 714 opera regularmente das 05h00 às 23h00, operando com frequência fixa de 20 minutos entre cada partida, mantendo o itinerário completo e atendendo a todas as paradas estabelecidas nesta resolução.
+
+4. DAS PARADAS HOMOLOGADAS NA REGIÃO DAS ACÁCIAS
+Ficam cadastradas no sistema COB as seguintes paradas no trecho de bairro:
+- Ponto P-101: Av. dos Ipês, altura do nº 42 (Abrigo padrão metálico tipo A).
+- Ponto P-102: Rua das Acácias, defronte ao nº 450 (Ponto Ativo - Abrigo com cobertura e assentos preferenciais).
+- Ponto P-103: Rua das Acácias, esquina com Rua das Hortênsias nº 890 (Tótem informativo).
+- Ponto P-105: Largo dos Jacarandás, s/n (Ponto de Retorno e Regulação Operacional).
+
+5. DA TARIFAÇÃO REGULAR
+A tarifa básica do sistema é fixada em R$ 4,40 (quatro reais e quarenta centavos), admitindo integração temporal gratuita de até 120 minutos com outras linhas alimentadoras por meio do Bilhete Cidadão Metropolitano.

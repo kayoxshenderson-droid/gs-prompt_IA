@@ -1,0 +1,55 @@
+================================================================================
+FIAP - GLOBAL SOLUTION 2026.2 - PROMPT AND ARTIFICIAL INTELLIGENCE
+TERMO DE CERTIFICAÇÃO, AUTORIA E LINKS DE ENTREGA
+================================================================================
+
+1. DADOS DE IDENTIFICAÇÃO DO GRUPO:
+--------------------------------------------------------------------------------
+Turma: 1CCPG (Ciência da Computação - 2º Semestre)
+Professor Avaliador: Prof. Jorge Luiz Gomes
+Frente de Cidadania Escolhida: Frente A - Mobilidade Urbana (Assistente de Mobilidade COB)
+Data da Entrega: 19/11/2026
+
+Integrante
+- Nome: Kayo Henderson RM: 570706
+
+
+2. LINKS OFICIAIS DE REPRODUTIBILIDADE:
+--------------------------------------------------------------------------------
+- Link do Repositório GitHub Oficial:
+  https://github.com/kayoxshenderson-droid/gs-prompt_IA.git
+
+3. DECLARAÇÃO DE SEGURANÇA E CHAVES DE API:
+--------------------------------------------------------------------------------
+[X] CERTIFICAMOS que nenhuma chave de API, segredo ou token privado está exposto
+    no notebook, no repositório GitHub, no arquivo ZIP ou em arquivos de logs.
+[X] O notebook consome estritamente a variável de ambiente via Google Colab Secrets:
+    userdata.get('OLLAMA_API_KEY') e fallback local/mock documentado.
+
+4. EVIDÊNCIA DE EXECUÇÃO FINAL (OUTPUT DA CÉLULA FINAL DO NOTEBOOK):
+--------------------------------------------------------------------------------
+================================================================================
+RELATÓRIO FINAL: NOTEBOOK CONCLUÍDO COM SUCESSO DE PONTA A PONTA!
+--------------------------------------------------------------------------------
+O assistente CitizenTech comprovou que a confiabilidade pública decorre de decisões de engenharia:
+1. DESEMPENHO MEDIDO: O pipeline RAG atingiu Faithfulness de 0.9475 e Response Relevancy de 0.9225,
+   superando com folga as metas do briefing (0.80 e 0.75). A armadilha de desatualização temporal (Q5)
+   foi resolvida pelo prompt direcionado por metadados de data_publicacao, alcançando Context Precision de 0.9025.
+2. ONDE O SISTEMA ERRA: O RAG ainda é sensível a menções temporais relativas ('hoje à noite', 'no próximo mês')
+   quando desacompanhadas de um normalizador de datas, causando oscilações no recall de consultas complexas (Q8 com 0.83).
+3. TRANSIÇÃO PARA PRODUÇÃO EM ESCALA: Para disponibilização aos munícipes, faz-se necessário:
+   (a) Conectar a ferramenta calcular_proximo_horario ao barramento GTFS-RT de telemetria GPS da frota;
+   (b) Implementar anonimização de dados LGPD (Microsoft Presidio) na camada de rede antes do LLM;
+   (c) Adotar cache semântico (Redis Vector) para consultas frequentes de tarifa, reduzindo o custo por query a zero.
+================================================================================
+
+5. CHECKLIST DOS 7 ENTREGÁVEIS:
+--------------------------------------------------------------------------------
+[X] 1_Notebook_GS2026_2.ipynb (Notebook autônomo com as 9 seções obrigatórias 0 a 8)
+[X] 2_base_documental/ (3 documentos oficiais completos com armadilha e detalhes de apoio)
+[X] 3_avaliacao_ragas.json (Métricas reais medidas por pergunta e média)
+[X] 4_README.md (Documentação técnica, diagrama de fluxo, justificativas e prints)
+[X] 5_certificacao.txt (Este documento preenchido com dados e links)
+[X] 6_Chat_Log.txt (Histórico de uso de IA como ferramenta de apoio e depuração)
+[X] 7_demo_video_url.txt (Link do vídeo <= 3 min e roteiro da apresentação)
+================================================================================

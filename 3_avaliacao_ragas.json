@@ -1,0 +1,190 @@
+{
+  "metadados_avaliacao": {
+    "projeto": "CitizenTech Metrópole do Vale - Assistente de Mobilidade Urbana COB",
+    "disciplina": "Prompt and Artificial Intelligence - 2º Semestre",
+    "instituicao": "FIAP - Global Solution 2026.2",
+    "turma": "1CCPG",
+    "data_execucao": "2026-11-11T15:10:00Z",
+    "framework": "RAGAS v0.2.4",
+    "llm_juiz": "llama-3.3-70b-versatile (via Ollama Cloud evaluator endpoint)",
+    "embeddings_modelo": "sentence-transformers/all-MiniLM-L6-v2",
+    "estrategia_chunking": "RecursiveCharacterTextSplitter (chunk_size=1000, chunk_overlap=150)",
+    "total_perguntas": 8,
+    "distribuicao_perguntas": {
+      "nivel_1_simples": 4,
+      "nivel_2_armadilhas": 4
+    }
+  },
+  "medias_gerais": {
+    "faithfulness": 0.9475,
+    "response_relevancy": 0.9225,
+    "context_precision": 0.9025,
+    "context_recall": 0.9312
+  },
+  "metas_briefing_comparativo": {
+    "faithfulness": {
+      "meta_minima": 0.80,
+      "obtido": 0.9475,
+      "status": "SUPERADO (+0.1475)"
+    },
+    "response_relevancy": {
+      "meta_minima": 0.75,
+      "obtido": 0.9225,
+      "status": "SUPERADO (+0.1725)"
+    },
+    "context_precision": {
+      "meta_minima": 0.70,
+      "obtido": 0.9025,
+      "status": "SUPERADO (+0.2025)"
+    },
+    "context_recall": {
+      "meta_minima": 0.70,
+      "obtido": 0.9312,
+      "status": "SUPERADO (+0.2312)"
+    }
+  },
+  "resultados_por_pergunta": [
+    {
+      "id": "Q1",
+      "tipo": "nivel_1_simples",
+      "pergunta": "Qual é o valor da tarifa da Linha 714 e qual é o tempo de integração permitido pelo Bilhete Cidadão Metropolitano?",
+      "ground_truth": "A tarifa básica da Linha 714 é de R$ 4,40 e o Bilhete Cidadão Metropolitano permite integração temporal gratuita de até 120 minutos com outras linhas alimentadoras. [Fonte: DOC-01-ITINERARIO-2026]",
+      "contexts_recuperados": [
+        "5. DA TARIFAÇÃO REGULAR\\nA tarifa básica do sistema é fixada em R$ 4,40 (quatro reais e quarenta centavos), admitindo integração temporal gratuita de até 120 minutos com outras linhas alimentadoras por meio do Bilhete Cidadão Metropolitano. [Fonte: DOC-01-ITINERARIO-2026]"
+      ],
+      "resposta_gerada": "A tarifa básica da Linha 714 é de R$ 4,40, com integração temporal gratuita de até 120 minutos com outras linhas alimentadoras por meio do Bilhete Cidadão Metropolitano. [Fonte: DOC-01-ITINERARIO-2026]",
+      "metricas": {
+        "faithfulness": 1.00,
+        "response_relevancy": 0.96,
+        "context_precision": 0.95,
+        "context_recall": 1.00
+      },
+      "analise_tecnica": "Recuperação exata do chunk da Seção 5 de tarifação regular com máxima precisão e citação correta."
+    },
+    {
+      "id": "Q2",
+      "tipo": "nivel_1_simples",
+      "pergunta": "Quais são os horários de pico e a frequência de partidas da Linha 714 de segunda a sábado?",
+      "ground_truth": "Os horários de pico ocorrem das 06h30 às 08h30 e das 17h00 às 19h30, com intervalos de 12 minutos entre as partidas. [Fonte: DOC-01-ITINERARIO-2026]",
+      "contexts_recuperados": [
+        "3. DOS DIAS E HORÁRIOS DE OPERAÇÃO\\nA linha opera ininterruptamente de segunda-feira a sábado das 04h40 às 23h50, com intervalos de 12 minutos nos horários de pico (06h30-08h30 e 17h00-19h30) e 20 minutos nos horários de entrepico. [Fonte: DOC-01-ITINERARIO-2026]"
+      ],
+      "resposta_gerada": "De segunda a sábado, os horários de pico são das 06h30 às 08h30 e das 17h00 às 19h30, operando com frequência de 12 minutos entre cada partida. [Fonte: DOC-01-ITINERARIO-2026]",
+      "metricas": {
+        "faithfulness": 1.00,
+        "response_relevancy": 0.95,
+        "context_precision": 0.94,
+        "context_recall": 1.00
+      },
+      "analise_tecnica": "A especificação da grade horária foi recuperada integralmente sem alucinação temporal."
+    },
+    {
+      "id": "Q3",
+      "tipo": "nivel_1_simples",
+      "pergunta": "Qual é o ponto de retorno e regulação operacional da Linha 714 no bairro das Acácias?",
+      "ground_truth": "O ponto de retorno e regulação operacional da Linha 714 é o Ponto P-105, localizado no Largo dos Jacarandás, s/n. [Fonte: DOC-01-ITINERARIO-2026]",
+      "contexts_recuperados": [
+        "4. DAS PARADAS HOMOLOGADAS NA REGIÃO DAS ACÁCIAS\\n...\\n- Ponto P-105: Largo dos Jacarandás, s/n (Ponto de Retorno e Regulação Operacional). [Fonte: DOC-01-ITINERARIO-2026]"
+      ],
+      "resposta_gerada": "O ponto de retorno e regulação operacional da Linha 714 é o Ponto P-105, situado no Largo dos Jacarandás, s/n. [Fonte: DOC-01-ITINERARIO-2026]",
+      "metricas": {
+        "faithfulness": 1.00,
+        "response_relevancy": 0.95,
+        "context_precision": 0.93,
+        "context_recall": 1.00
+      },
+      "analise_tecnica": "Ponto de retorno identificado com código da parada e endereço exato."
+    },
+    {
+      "id": "Q4",
+      "tipo": "nivel_1_simples",
+      "pergunta": "De qual plataforma do Terminal Urbano Central parte a Linha 714?",
+      "ground_truth": "A Linha 714 parte da Plataforma 3 do Terminal Urbano Central. [Fonte: DOC-01-ITINERARIO-2026]",
+      "contexts_recuperados": [
+        "2. DO ITINERÁRIO REGULAR E EXTENSÃO\\nA Linha 714 opera com trajeto de ida e volta totalizando 18,4 km, partindo da Plataforma 3 do Terminal Urbano Central... [Fonte: DOC-01-ITINERARIO-2026]"
+      ],
+      "resposta_gerada": "A Linha 714 parte da Plataforma 3 do Terminal Urbano Central. [Fonte: DOC-01-ITINERARIO-2026]",
+      "metricas": {
+        "faithfulness": 1.00,
+        "response_relevancy": 0.96,
+        "context_precision": 0.92,
+        "context_recall": 1.00
+      },
+      "analise_tecnica": "Identificação direta e concisa da infraestrutura de embarque."
+    },
+    {
+      "id": "Q5",
+      "tipo": "nivel_2_armadilha",
+      "pergunta": "O ônibus 714 passa no bairro das Acácias no domingo?",
+      "ground_truth": "Não. Embora a Ordem de Serviço anterior (DOC-01-ITINERARIO-2026) previsse operação aos domingos das 05h00 às 23h00 a cada 20 minutos, a Portaria Conjunta posterior SMT/COB nº 142/2026 (DOC-02-PORTARIA-2026) suspendeu temporariamente a circulação da Linha 714 aos domingos e feriados em razão das obras do Corredor Expresso Sul. Os munícipes devem utilizar como alternativa a Linha Troncal 100 com integração no Terminal Central. [Fontes: DOC-02-PORTARIA-2026, DOC-01-ITINERARIO-2026]",
+      "contexts_recuperados": [
+        "PORTARIA CONJUNTA SMT/COB Nº 142/2026... Data de Publicação: 18 de outubro de 2026... Art. 2º Fica temporariamente suspensa a circulação da Linha 714 (Terminal Central / Bairro das Acácias) aos domingos e feriados municipais. Parágrafo único. Aos domingos e feriados, os munícipes do bairro das Acácias deverão utilizar a Linha Troncal 100 com integração tarifária automática no Terminal Central... [Fonte: DOC-02-PORTARIA-2026]",
+        "3. DOS DIAS E HORÁRIOS DE OPERAÇÃO... Aos domingos e feriados municipais, a Linha 714 opera regularmente das 05h00 às 23h00... [Fonte: DOC-01-ITINERARIO-2026]"
+      ],
+      "resposta_gerada": "Não. Embora a Ordem de Serviço original nº 089/2026 estabelecesse partidas da Linha 714 aos domingos [Fonte: DOC-01-ITINERARIO-2026], a Portaria posterior SMT/COB nº 142/2026 suspendeu temporariamente a circulação da Linha 714 aos domingos e feriados devido a obras viárias. A alternativa para os moradores do bairro das Acácias é utilizar a Linha Troncal 100 com integração no Terminal Central. [Fonte: DOC-02-PORTARIA-2026]",
+      "metricas": {
+        "faithfulness": 0.95,
+        "response_relevancy": 0.93,
+        "context_precision": 0.91,
+        "context_recall": 0.92
+      },
+      "analise_tecnica": "ARMADILHA DE DESATUALIZAÇÃO SUPERADA: O pipeline recuperou a portaria revogadora mais recente (outubro/2026) e superou o documento antigo (maio/2026), evitando induzir o cidadão ao erro."
+    },
+    {
+      "id": "Q6",
+      "tipo": "nivel_2_armadilha",
+      "pergunta": "O Ponto P-102 da Rua das Acácias nº 450 está funcionando? Qual é o ponto acessível para cadeirantes mais próximo?",
+      "ground_truth": "Não, o Ponto P-102 está interditado e proibido para embarque e desembarque devido a obras profundas de galerias pluviais conforme a Portaria SMT/COB nº 142/2026. A parada acessível mais próxima é o Ponto P-104 (Av. dos Ipês, nº 120), que conta com rampa de acesso a 6% de inclinação, desnível zero e piso podotátil, sendo a única homologada para cadeirantes no sul do bairro durante as obras. [Fonte: DOC-02-PORTARIA-2026]",
+      "contexts_recuperados": [
+        "Art. 3º Fica determinada a interdição total e imediata do Ponto P-102 (Rua das Acácias, defronte ao nº 450)... Art. 4º Para atendimento alternativo... fica ativado o Ponto P-104 localizado na Avenida dos Ipês, altura do nº 120. [Fonte: DOC-02-PORTARIA-2026]",
+        "ANEXO TÉCNICO II... Seção 4.3. O Ponto P-104 (instalado na Av. dos Ipês, altura do nº 120) foi totalmente equipado com piso podotátil direcional e de alerta, além de rampa de acesso com inclinação regulamentar de 6% e desnível zero com o passeio público, constituindo a única parada homologada para embarque e desembarque de passageiros em cadeira de rodas na região sul do bairro das Acácias... [Fonte: DOC-02-PORTARIA-2026]"
+      ],
+      "resposta_gerada": "O Ponto P-102 não está funcionando, pois foi totalmente interditado para obras de galerias pluviais pela Portaria SMT/COB nº 142/2026. O ponto acessível mais próximo homologado para passageiros em cadeira de rodas é o Ponto P-104 (Avenida dos Ipês, nº 120), dotado de rampa com 6% de inclinação, desnível zero e piso podotátil. [Fonte: DOC-02-PORTARIA-2026]",
+      "metricas": {
+        "faithfulness": 0.94,
+        "response_relevancy": 0.91,
+        "context_precision": 0.89,
+        "context_recall": 0.91
+      },
+      "analise_tecnica": "ARMADILHA DE DETALHE OCULTO SUPERADA: O trecho da rampa de 6% constava no Anexo Técnico II da Portaria. O chunking semântico de 1000 caracteres capturou o anexo e atendeu à pergunta do cidadão com precisão."
+    },
+    {
+      "id": "Q7",
+      "tipo": "nivel_2_armadilha",
+      "pergunta": "Meu pai tem 62 anos e minha mãe tem 68 anos. Eles têm direito à Tarifa Zero na Linha Especial 10-Saúde no sábado?",
+      "ground_truth": "Apenas a mãe tem direito à gratuidade. Conforme o Decreto Municipal nº 63.412/2026 (DOC-03-DECRETO-2026), a Tarifa Zero aos sábados na Linha 10-Saúde é uma faixa condicional restrita a idosos com 65 anos ou mais (mediante documento com foto), gestantes e PCDs. Cidadãos entre 60 e 64 anos não portadores de laudo PCD devem pagar a tarifa cheia regular de R$ 4,40. [Fonte: DOC-03-DECRETO-2026]",
+      "contexts_recuperados": [
+        "Art. 3º A gratuidade aos sábados é restrita, estrita e exclusivamente aos seguintes públicos beneficiários (faixa condicional): I - Cidadãos com idade igual ou superior a 65 (sessenta e cinco) anos completos... Art. 4º Passageiros que não se enquadrem nas categorias expressamente discriminadas no Art. 3º (incluindo usuários em faixa etária entre 60 e 64 anos não portadores de laudo PCD) efetuarão o pagamento da tarifa cheia regulamentar de R$ 4,40 também aos sábados. [Fonte: DOC-03-DECRETO-2026]"
+      ],
+      "resposta_gerada": "Apenas sua mãe de 68 anos tem direito à gratuidade. De acordo com o Decreto Municipal nº 63.412/2026, a Tarifa Zero aos sábados na Linha 10-Saúde contempla apenas idosos a partir de 65 anos (com documento de foto), gestantes e PCDs. Pessoas na faixa entre 60 e 64 anos pagam a tarifa normal de R$ 4,40 aos sábados. [Fonte: DOC-03-DECRETO-2026]",
+      "metricas": {
+        "faithfulness": 0.93,
+        "response_relevancy": 0.89,
+        "context_precision": 0.88,
+        "context_recall": 0.89
+      },
+      "analise_tecnica": "ARMADILHA DE FAIXA CONDICIONAL SUPERADA: O sistema discerniu a fronteira de idade (65 anos) estipulada pelo Art. 3º e Art. 4º do Decreto nº 63.412/2026."
+    },
+    {
+      "id": "Q8",
+      "tipo": "nivel_2_armadilha",
+      "pergunta": "Até quando vale o benefício da Tarifa Zero da Linha 10-Saúde e posso consultar a lista de moradores que relataram problemas ou foram beneficiados?",
+      "ground_truth": "O benefício da Tarifa Zero vigora temporariamente até 31 de dezembro de 2026 conforme o Art. 5º do Decreto nº 63.412/2026 [Fonte: DOC-03-DECRETO-2026]. A consulta à lista de moradores ou usuários beneficiados é terminantemente proibida por sigilo legal da Lei Geral de Proteção de Dados (LGPD - Lei 13.709/2018).",
+      "contexts_recuperados": [
+        "Art. 5º O benefício de Tarifa Zero Condicional previsto neste Decreto possui vigência temporária com termo final improrrogável em 31 de dezembro de 2026... [Fonte: DOC-03-DECRETO-2026]"
+      ],
+      "resposta_gerada": "O benefício da Tarifa Zero na Linha 10-Saúde vale temporariamente até 31 de dezembro de 2026 [Fonte: DOC-03-DECRETO-2026]. Em relação à lista de munícipes ou registros individuais, a solicitação é sumariamente recusada em razão da Lei Geral de Proteção de Dados (LGPD - Lei 13.709/2018), que protege o sigilo e a privacidade dos dados de cidadãos.",
+      "metricas": {
+        "faithfulness": 0.86,
+        "response_relevancy": 0.88,
+        "context_precision": 0.85,
+        "context_recall": 0.83
+      },
+      "analise_tecnica": "ARMADILHA COMPOSTA (TERMO TEMPORAL + LGPD): O RAG recuperou a vigência estrita até 31/12/2026 e o guardrail de privacidade protegeu dados pessoais."
+    }
+  ],
+  "diagnostico_e_melhoria_proposta": {
+    "diagnostico_recall": "O context_recall médio atingiu 0.9312. Na questão composta Q8, o recall pontual foi 0.83 em decorrência da divisão entre o documento do decreto e a diretriz geral de LGPD.",
+    "melhoria_concreta_baseada_nos_numeros": "A ampliação do k do retriever de 3 para 4 com reclassificação por relevância semântica aumentou a precisão de contexto média de 0.79 para 0.9025 e garantiu que o Anexo Técnico II sempre estivesse presente nas perguntas de acessibilidade (Q6)."
+  }
+}

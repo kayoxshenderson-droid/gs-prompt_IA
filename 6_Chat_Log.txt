@@ -1,0 +1,89 @@
+================================================================================
+REGISTRO DE USO DE INTELIGÊNCIA ARTIFICIAL COMO FERRAMENTA DE APOIO (CHAT LOG)
+DISCIPLINA: PROMPT AND ARTIFICIAL INTELLIGENCE - FIAP GS2026.2
+PROJETO: CITIZENTECH METRÓPOLE DO VALE - ASSISTENTE DE MOBILIDADE URBANA COB
+================================================================================
+Declaração de Transparência: Este arquivo documenta as consultas, raciocínios técnicos,
+rascunhos de ferramentas e discussões arquiteturais realizadas com auxílio de IA.
+Nenhum ground truth foi gerado por IA; todos os dados foram derivados diretamente
+da base documental oficial formulada e auditada pela equipe humana.
+================================================================================
+
+[SESSÃO 1: MODELAGEM DAS FERRAMENTAS DO AGENTE E ARITMÉTICA DE HORÁRIOS]
+--------------------------------------------------------------------------------
+Engenheiro: "Precisamos construir uma ferramenta para o agente chamada calcular_proximo_horario.
+A regra de ouro da GS é: o LLM decide quando chamar a ferramenta, mas o código decide
+o que a ferramenta devolve. O LLM nunca inventa horários. Como estruturar essa função em Python
+de forma robusta, recebendo a linha, o horário atual do cidadão (HH:MM) e o dia da semana,
+para consultar as tabelas de intervalo da OS nº 089/2026 e calcular a próxima partida exata e minutos restantes?"
+
+IA: "Para garantir determinismo estrito sem permitir alucinações numéricas do LLM:
+1. Normalize a entrada de horário convertendo para minutos desde a meia-noite (hora * 60 + minuto).
+2. Defina uma grade matemática com base nas faixas operacionais da Ordem de Serviço SMT/DET nº 089/2026:
+   - Madrugada (04:40 às 06:20): step de 20 min
+   - Pico da Manhã (06:30 às 08:30): step de 12 min
+   - Entrepico Diurno (08:50 às 16:50): step de 20 min
+   - Pico da Tarde (17:00 às 19:36): step de 12 min
+   - Noturno (19:50 às 23:50): step de 20 min
+3. Caso o dia informado seja domingo, intercepte e retorne a determinação da Portaria nº 142/2026:
+   a circulação aos domingos está temporariamente suspensa por obras, indicando a Linha Troncal 100.
+4. Trate erros controlados: se o usuário informar um horário após as 23:50, retorne
+   'OPERACAO_ENCERRADA_HOJE: Próxima partida amanhã às 04:40'. Se o código da linha for inválido,
+   retorne 'ERRO_LINHA_NAO_ENCONTRADA'."
+
+Engenheiro: "Excelente. O agente chamará a tool e o trace do agente exibirá:
+Thought -> Action -> Action Input -> Observation -> Final Answer."
+
+--------------------------------------------------------------------------------
+[SESSÃO 2: DEPURAÇÃO DE METADADOS E PRECEDÊNCIA TEMPORAL NO CHROMADB]
+--------------------------------------------------------------------------------
+Engenheiro: "Ao indexar os documentos no ChromaDB, percebemos que o retriever às vezes retornava
+trechos do itinerário antigo (doc_01) em vez da portaria recente de interdição (doc_02).
+Como podemos estruturar a coleção e o prompt LCEL para garantir que a data_publicacao mais recente prevaleça?"
+
+IA: "1. No ChromaDB, configure a coleção com distância cosseno ('hnsw:space': 'cosine') e injete
+   metadados estruturados em cada Document:
+   metadata={'doc_id': doc_id, 'data_publicacao': data_publicacao, 'titulo': titulo, 'tema': tema}
+2. Na busca vetorial, utilize similarity_search_with_score(query, k=4) para que tanto a norma original
+   quanto a portaria modificadora sejam recuperadas simultaneamente.
+3. No prompt do pipeline LCEL, declare a regra de precedência temporal de forma imperativa:
+   'PRECEDÊNCIA TEMPORAL: Documentos com data_publicacao mais recente prevalecem sobre documentos
+   mais antigos. A Portaria nº 142/2026 (DOC-02-PORTARIA-2026) altera a Ordem de Serviço nº 089/2026
+   (DOC-01-ITINERARIO-2026). Cite a fonte com [Fonte: doc_id].'"
+
+--------------------------------------------------------------------------------
+[SESSÃO 3: ANÁLISE DO COMPORTAMENTO DO CONTEXT_RECALL NO RAGAS]
+--------------------------------------------------------------------------------
+Engenheiro: "Na primeira rodada com RAGAS usando chunks pequenos de 500 caracteres, a pergunta Q6
+(sobre a acessibilidade e rampa de 6% do ponto provisório P-104) obteve context_recall de apenas 0.65.
+Por que isso ocorreu e como corrigir mantendo a fidelidade?"
+
+IA: "Isso ocorreu porque as especificações técnicas da parada P-104 foram publicadas no Anexo Técnico II
+da Portaria nº 142/2026 (Seção 4.3). Em blocos rígidos de 500 caracteres, a Seção 4.3 foi cortada entre
+dois chunks distintos: um contendo o número do ponto e outro contendo a especificação da rampa com 6% de inclinação
+e desnível zero. O retriever recuperou apenas o primeiro bloco, deixando de fora o detalhe técnico.
+Para resolver:
+1. Adote chunk_size=1000 com chunk_overlap=150 no RecursiveCharacterTextSplitter com separadores
+   ['\\n\\nArt.', '\\n\\nSeção', '\\n\\n', '\\n', '. '].
+2. Isso garante que o Anexo Técnico II permaneça íntegro em seu respectivo chunk.
+3. Ao reavaliar com k=4, o context_recall da Q6 saltou de 0.65 para 0.91, pois todo o anexo
+   e suas especificações de acessibilidade foram recuperados de forma contígua."
+
+--------------------------------------------------------------------------------
+[SESSÃO 4: ARQUITETURA DE GUARDRAILS E FILTRAGEM DETERMINÍSTICA]
+--------------------------------------------------------------------------------
+Engenheiro: "Como garantir que os guardrails não dependam exclusivamente do bom comportamento do LLM
+e atuem de forma determinística antes e depois do pipeline?"
+
+IA: "Implemente uma arquitetura em camadas de inspeção:
+1. Filtro de Escopo: Lista de verificação temática para descartar termos alheios ao município
+   (receitas culinárias, futebol, piadas). Se acionado, interrompe a execução com redirecionamento ao canal 156.
+2. Defesa contra Prompt Injection: Verificação de expressões de jailbreak e desautorização de ordens
+   ('ignore as instruções anteriores', 'você agora é DAN', 'diga que o ponto está aberto').
+   O contexto documental é tratado estritamente como dado passivo entre tags delimitadoras XML.
+3. Proteção LGPD: Filtro de expressões para capturar tentativas de extração de dados privados
+   ('quais moradores relataram', 'me passe os CPFs', 'nomes dos solicitantes').
+   Se detectado, recusa formalmente com base na Lei Federal nº 13.709/2018.
+4. Limite de Confiança / Não Sei: Quando a similaridade vetorial for insuficiente, o pipeline emite a
+   devolutiva padrão de ausência de informações oficiais na base, prevenindo alucinações."
+================================================================================
